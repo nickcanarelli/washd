@@ -1,0 +1,33 @@
+{% extends "main/base/interior-base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="main-container">
+    <section class="cover fullscreen">
+        <div class="container v-align-transform">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <div class="feature bordered text-center login">
+                        <h4 class="uppercase">Sign In</h4>
+
+                        <form class="text-left" method="post" action=".">
+                          {% csrf_token %}
+                          {{ form|crispy }}
+
+                          <input type="submit" value="{% trans 'Sign In' %}" />
+                          <input type="hidden" name="next" value="{{ next }}" />
+
+                        </form>
+                        <p class="mb0">Forgot your password?
+                            <a href="{% url 'auth_password_reset' %}">{% trans "Click Here To Reset It" %}"></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end of container-->
+    </section>
+
+{% endblock %}

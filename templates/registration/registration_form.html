@@ -1,0 +1,31 @@
+{% extends "main/base/interior-base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="main-container">
+    <section class="cover fullscreen">
+        <div class="container v-align-transform">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                  <div class="feature bordered text-center register">
+                      <h4 class="uppercase">Register</h4>
+                      <form class="text-left" method="post" action=".">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <input type="submit" value="{% trans 'Register' %}" />
+                      </form>
+                      <p class="mb0">By signing up, you agree to our
+                          <a href="#">Terms Of Use</a>
+                      </p>
+                  </div>
+              </div>
+          </div>
+          <!--end of row-->
+      </div>
+      <!--end of container-->
+  </section>
+
+<!-- <p>Need to <a href="{% url 'auth_login' %}">Login</a>?</p> -->
+{% endblock %}

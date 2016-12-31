@@ -1,0 +1,360 @@
+{% extends "client/base/client-base.html" %}
+
+{% block title %}Washd | Washdapp.com{% endblock %}
+
+{% block content %}
+{% load static %}
+        <div class="main-container userprofile">
+            <section class="page-title page-title-4 bg-secondary">
+                <div class="container">
+                    <div class="row">
+                        <div class="row pt-xs-80 mb-xs-40 userprofile-fullname">
+                            <div class="col-sm-12">
+                                <div class="pull-left">
+                                  {% if user.profile.avatar == None %}
+                                      <img class="inline-block image-small" src="{% static "img/avatar1.png" %}" />
+                                  {% else %}
+                                      <img class="inline-block image-small" alt="Pic" src="{{ user.profile.avatar.url }}" />
+                                  {% endif %}
+                                </div>
+                                <div class="inline-block p32 p0-xs mb-xs-24">
+                                    <h3 class="uppercase mb8">{{ user.get_full_name }}</h3>
+                                    <h5 class="uppercase">{{ user.profile.city }}, {{ user.profile.state }}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+            <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 userprofile-verticalnav">
+                            <div class="vnav-button vertical">
+                                <ul>
+                                    <li class="active"><a href="{% url 'client-laundry' %}">My Laundry</a></li>
+                                    <li><a href="{% url 'client-profile' %}">Profile</a></li>
+                                    <li><a href="user-preferences.html">Laundry Preferences</a></li>
+                                    <li><a href="user-freelaundry.html">Free Laundry <span class="label">NEW</span></a></li>
+                                    <li><a href="user-payments.html">Payment</a></li>
+                                    <li><a href="index.html">Sign Out</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-9 col-sm-8">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-9">
+                                    <div class="mb32">
+                                        <h5 class="uppercase">Dirty Laundry</h5>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-3 text-right">
+                                    <a class="btn btn-sm mylaundry-btn" href="user-placeorder-new.html">Place an Order</a>
+                                </div>
+                            </div>
+                            <div class="row mb32v mylaundry">
+                                <div class="col-md-12">
+                                    <ul class="accordion accordion-2 one-open">
+                                        <li class="active">
+                                            <div class="title">
+                                                <div class="row text-center">
+                                                    <div class="col-xs-2">
+                                                        04/20/16
+                                                    </div>
+                                                    <div class="col-xs-2">
+                                                        Wash & Fold
+                                                    </div>
+                                                    <div class="col-xs-3">
+                                                        Lancaster, PA
+                                                    </div>
+                                                    <div class="col-xs-3 text-left">
+                                                        <img src="{% static "img/visa-2@2x.png" %}" alt="Visa" />Visa •••• 2185
+                                                    </div>
+                                                    <div class="col-xs-1">
+                                                        $73.95
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="content">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <img class="center-block image-small status-pic" alt="Pic" src="img/kyle.jpg" />
+                                                            </div>
+                                                            <div class="col-md-12 status-driverinfo">
+                                                                <p class="status-driver">Kyle E. <br/>
+                                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span></p>
+                                                                <p>picked up your wash & fold laundry <br> Today at 3:45pm.</p>
+                                                            </div>
+                                                            <div class="col-md-4 orderstatus-btn">
+                                                                <a class="btn btn-sm" href="help.html">Support</a>
+                                                            </div>
+                                                            <div class="col-md-4 orderstatus-btn">
+                                                                <a class="btn btn-sm" href="user-receipt.html">Receipt</a>
+                                                            </div>
+                                                            <div class="col-md-4 orderstatus-btn">
+                                                                <a class="btn btn-sm disabled" href="#">Cancel</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="orderstatus-list">
+                                                            <div class="status-item" id="m16">
+                                                                <div class="status-head clearfix">
+                                                                    <div class="user-detail">
+                                                                        <h5 class="status-title">Processing</h5>
+                                                                        <div class="status-description">
+                                                                            <p>Your order currently being processed.</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="status-item" id="m16">
+                                                                <div class="status-head clearfix">
+                                                                    <div class="user-detail">
+                                                                        <h5 class="status-title">Pick-up</h5>
+                                                                        <div class="status-description">
+                                                                            <p>Your laundry was picked up at 3:45pm on 04/20/16.</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="status-item inactive" id="m16">
+                                                                <div class="status-head clearfix">
+                                                                    <div class="user-detail">
+                                                                        <h5 class="status-title">Wash & Fold</h5>
+                                                                        <div class="status-description">
+                                                                            <p>Your laundry has been washed, sorted, and folded.</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="status-item-last inactive" id="m16">
+                                                                <div class="status-head clearfix">
+                                                                    <div class="user-detail">
+                                                                        <h5 class="status-title">Delivery</h5>
+                                                                        <div class="status-description">
+                                                                            <p>Estimated delivery at 2:25pm on 04/21/16.</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="">
+                                            <div class="title">
+                                                <div class="row text-center">
+                                                    <div class="col-xs-2">
+                                                        04/20/16
+                                                    </div>
+                                                    <div class="col-xs-2">
+                                                        Dry Cleaning
+                                                    </div>
+                                                    <div class="col-xs-3">
+                                                        Lancaster, PA
+                                                    </div>
+                                                    <div class="col-xs-3 text-left">
+                                                        <img src="{% static "img/mastercard@2x.png" %}" alt="Mastercard" />Mastercard •••• 8145
+                                                    </div>
+                                                    <div class="col-xs-1">
+                                                        $37.28
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="content">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <img class="center-block image-small status-pic" alt="Pic" src="img/kyle.jpg" />
+                                                            </div>
+                                                            <div class="col-md-12 status-driverinfo">
+                                                                <p class="status-driver">Kyle E. <br/>
+                                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span></p>
+                                                                <p>will pick-up your dry cleaning <br> Friday at 9:30am.</p>
+                                                            </div>
+                                                            <div class="col-md-4 orderstatus-btn">
+                                                                <a class="btn btn-sm" href="help.html">Support</a>
+                                                            </div>
+                                                            <div class="col-md-4 orderstatus-btn">
+                                                                <a class="btn btn-sm" href="user-receipt.html">Receipt</a>
+                                                            </div>
+                                                            <div class="col-md-4 orderstatus-btn">
+                                                                <a class="btn btn-sm" href="#">Cancel</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="orderstatus-list">
+                                                            <div class="status-item" id="m16">
+                                                                <div class="status-head clearfix">
+                                                                    <div class="user-detail">
+                                                                        <h5 class="status-title">Processing</h5>
+                                                                        <div class="status-description">
+                                                                            <p>Your order currently being processed.</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="status-item inactive" id="m16">
+                                                                <div class="status-head clearfix">
+                                                                    <div class="user-detail">
+                                                                        <h5 class="status-title">Pick-up</h5>
+                                                                        <div class="status-description">
+                                                                            <p>Your dry clearning will be picked up at 9:30am on 04/23/16.</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="status-item inactive" id="m16">
+                                                                <div class="status-head clearfix">
+                                                                    <div class="user-detail">
+                                                                        <h5 class="status-title">Dry Cleaning</h5>
+                                                                        <div class="status-description">
+                                                                            <p>Your dry cleaning awaits a fresh cleanse.</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="status-item-last inactive" id="m16">
+                                                                <div class="status-head clearfix">
+                                                                    <div class="user-detail">
+                                                                        <h5 class="status-title">Delivery</h5>
+                                                                        <div class="status-description">
+                                                                            <p>Estimated delivery at 2:25pm on 04/25/16.</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="title">
+                                                <div class="row text-center">
+                                                    <div class="col-xs-2">
+                                                        03/25/16
+                                                    </div>
+                                                    <div class="col-xs-2">
+                                                        Wash & Fold
+                                                    </div>
+                                                    <div class="col-xs-3">
+                                                        Lancaster, PA
+                                                    </div>
+                                                    <div class="col-xs-3 text-left">
+                                                        <img src="{% static "img/visa-2@2x.png" %}" alt="Visa" />Visa •••• 2185
+                                                    </div>
+                                                    <div class="col-xs-1">
+                                                        $110.95
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="content">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <img class="center-block image-small status-pic" alt="Pic" src="img/kyle.jpg" />
+                                                            </div>
+                                                            <div class="col-md-12 status-driverinfo">
+                                                                <p class="status-driver">Kyle E. <br/>
+                                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span></p>
+                                                                <p>picked up your wash & fold laundry <br> Today at 3:45pm.</p>
+                                                            </div>
+                                                            <div class="col-md-4 orderstatus-btn">
+                                                                <a class="btn btn-sm" href="help.html">Support</a>
+                                                            </div>
+                                                            <div class="col-md-4 orderstatus-btn">
+                                                                <a class="btn btn-sm" href="user-receipt.html">Receipt</a>
+                                                            </div>
+                                                            <div class="col-md-4 orderstatus-btn">
+                                                                <a class="btn btn-sm disabled" href="#">Cancel</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="orderstatus-list">
+                                                            <div class="status-item" id="m16">
+                                                                <div class="status-head clearfix">
+                                                                    <div class="user-detail">
+                                                                        <h5 class="status-title">Processing</h5>
+                                                                        <div class="status-description">
+                                                                            <p>Your order currently being processed.</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="status-item" id="m16">
+                                                                <div class="status-head clearfix">
+                                                                    <div class="user-detail">
+                                                                        <h5 class="status-title">Pick-up</h5>
+                                                                        <div class="status-description">
+                                                                            <p>Your laundry was picked up at 3:45pm on 04/20/16.</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="status-item inactive" id="m16">
+                                                                <div class="status-head clearfix">
+                                                                    <div class="user-detail">
+                                                                        <h5 class="status-title">Wash & Fold</h5>
+                                                                        <div class="status-description">
+                                                                            <p>Your laundry has been washed, sorted, and folded.</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="status-item-last inactive" id="m16">
+                                                                <div class="status-head clearfix">
+                                                                    <div class="user-detail">
+                                                                        <h5 class="status-title">Delivery</h5>
+                                                                        <div class="status-description">
+                                                                            <p>Estimated delivery at 2:25pm on 04/21/16.</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row mb32">
+                                <div class="col-md-12">
+                                    <div class="mb32">
+                                        <h5 class="uppercase">Clean Laundry</h5>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <p>You have not completed any loads of laundry. <a href="user-placeorder-new.html">Click here</a> to to place an order today.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end of container-->
+            </section>
+            {% endblock %}

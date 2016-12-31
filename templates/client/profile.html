@@ -1,0 +1,157 @@
+{% extends "client/base/client-base.html" %}
+
+{% block title %}Profile | Washdapp.com{% endblock %}
+
+{% block content %}
+{% load static %}
+        <div class="main-container userprofile">
+            <section class="page-title page-title-4 bg-secondary">
+                <div class="container">
+                    <div class="row">
+                        <div class="row pt-xs-80 mb-xs-40 userprofile-fullname">
+                            <div class="col-sm-12">
+                              <div class="pull-left">
+                                {% if user.profile.avatar == None %}
+                                    <img class="inline-block image-small" src="{% static "img/avatar1.png" %}" />
+                                {% else %}
+                                    <img class="inline-block image-small" alt="Pic" src="{{ user.profile.avatar.url }}" />
+                                {% endif %}
+                              </div>
+                              <div class="inline-block p32 p0-xs mb-xs-24">
+                                  <h3 class="uppercase mb8">{{ user.get_full_name }}</h3>
+                                  <h5 class="uppercase">{{ user.profile.city }}, {{ user.profile.state }}</h5>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+            <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 userprofile-verticalnav">
+                            <div class="vnav-button vertical">
+                                <ul>
+                                    <li><a href="{% url 'client-laundry' %}">My Laundry</a></li>
+                                    <li class="active"><a href="{% url 'client-profile' %}">Profile</a></li>
+                                    <li><a href="user-preferences.html">Laundry Preferences</a></li>
+                                    <li><a href="user-freelaundry.html">Free Laundry <span class="label">NEW</span></a></li>
+                                    <li><a href="user-payments.html">Payment</a></li>
+                                    <li><a href="index.html">Sign Out</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-9 col-sm-6">
+                            <div class="row mb32">
+                                <div class="col-md-12">
+                                    <div class="mb32">
+                                        <h5 class="uppercase">General Information</h5>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12">
+                                            <div class="row">
+                                                <div class="col-xs-6 col-sm-2">
+                                                    <div class="lightbox-grid userprofile-geninfo square-thumbs">
+                                                        <ul data-gallery-title="Gallery">
+                                                            <li>
+                                                                <a href="img/avatar2.jpg" data-lightbox="true">
+                                                                    <div class="background-image-holder">
+                                                                        <img alt="image" class="background-image" src="img/avatar2.jpg" />
+                                                                    </div>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <!--end of lightbox gallery-->
+                                                </div>
+                                                <div class="col-xs-6 col-sm-10">
+                                                    <a class="btn btn-sm userprofile-editpic" href="#">Set Picture</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <form method="post">
+                                        {% csrf_token %}
+
+                                        <div class="col-xs-6 col-sm-6">
+                                            <input type="text" placeholder="First Name" value="{{user.first_name}}"/>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6">
+                                            <input type="text" placeholder="Last Name" value="{{user.last_name}}"/>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12">
+                                            <input type="text" placeholder="Email Address" value="{{user.email}}"/>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6">
+                                            <input type="password" placeholder="New Password" />
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6">
+                                            <input type="password" placeholder="Confirm Password" />
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12">
+                                            <input type="submit" value="Update Information">
+                                        </div>
+                                      </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="mb32">
+                                        <h5 class="uppercase">Addresses</h5>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12">
+                                            <div class="select-option">
+                                                <i class="ti-angle-down"></i>
+                                                <select>
+                                                    <option selected value="Default">Select existing address to modify</option>
+                                                    <option value="Small">Home</option>
+                                                    <option value="Medium">Office</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6">
+                                            <input type="text" placeholder="Location Name (ex: Home or Office)" />
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6">
+                                            <span class="userprofile-locationspan">Set this address as your default location?</span>
+                                            <div class="checkbox-option pull-right">
+                                                <div class="inner"></div>
+                                                <input type="checkbox" name="checkbox" value="Checkbox" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12">
+                                            <input type="text" placeholder="Address" />
+                                        </div>
+                                        <div class="col-xs-4 col-sm-4">
+                                            <input type="text" placeholder="City" />
+                                        </div>
+                                        <div class="col-xs-4 col-sm-4">
+                                            <div class="select-option">
+                                                <i class="ti-angle-down"></i>
+                                                <select>
+                                                    <option selected value="Default">State</option>
+                                                    <option value="Small">PA</option>
+                                                    <option value="Medium">NY</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4 col-sm-4">
+                                            <input type="text" placeholder="Zip Code" />
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12">
+                                            <input type="submit" value="Update Address">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--end of container-->
+            </section>
+            {% endblock %}

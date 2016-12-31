@@ -1,0 +1,33 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Create an Account | Washdapp.com" %}{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <section class="cover fullscreen">
+        <div class="container v-align-transform">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <div class="feature bordered text-center login">
+                        <h4 class="uppercase">Sign In</h4>
+                        <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+                        <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                          {% csrf_token %}
+                          {{ form }}
+                          {% if redirect_field_value %}
+                          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                          {% endif %}
+                          <button type="submit">{% trans "Create an Account" %}</button>
+                        </form>
+                        <p class="mb0">Forgot your password?
+                            <a href="{% url 'account_reset_password' %}">{% trans "Click Here To Reset It" %}</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end of container-->
+    </section>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block title %}{% trans "Sign In | Washdapp.com" %}{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <section class="cover fullscreen">
+        <div class="container v-align-transform">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <div class="feature bordered text-center login">
+                        <h4 class="uppercase">Sign In</h4>
+                        <form class="login" method="POST" action="{% url 'account_login' %}">
+                          {% csrf_token %}
+                          {{ form }}
+                          {% if redirect_field_value %}
+                          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                          {% endif %}
+                          <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
+                        </form>
+                        <p class="mb0">Forgot your password?
+                            <a href="{% url 'account_reset_password' %}">{% trans "Click Here To Reset It" %}</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end of container-->
+    </section>
+
+{% endblock %}
